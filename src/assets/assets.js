@@ -1,7 +1,7 @@
-import login_bg from "./login_bg.png";
-import logo from "./logo.png";
+import login_bg from "./login_bg.jpg";
+import logo_pp from "./logo_pp.png";
 
 export const assets = {
-  logo,
+  logo_pp,
   login_bg,
 };
