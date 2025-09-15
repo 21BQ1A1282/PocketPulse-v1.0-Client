@@ -4,8 +4,10 @@ import toast from "react-hot-toast";
 import { Link, useNavigate } from "react-router-dom";
 import { assets } from "../assets/assets.js";
 import Input from "../components/Input.jsx";
+import ProfilePhotoSelector from "../components/ProfilePhotoSelector.jsx";
 import { API_ENDPOINTS } from "../util/apiEndpoints.js";
 import axiosConfig from "../util/axiosConfig.jsx";
+import uploadProfileImage from "../util/uploadProfileImage.js";
 import { validateEmail } from "../util/validation.js";
 
 const Signup = () => {
@@ -14,11 +16,13 @@ const Signup = () => {
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
     const [isLoading, setIsLoading] = useState(false);
+    const [profilePhoto, setProfilePhoto] = useState(null);
 
     const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        let profileImageUrl = "";
 
         setIsLoading(true);
 
@@ -45,10 +49,18 @@ const Signup = () => {
 
         // SIGN UP API call
         try{
+
+            // upload image if present
+            if(profilePhoto){
+                const imageUrl =await uploadProfileImage(profilePhoto);
+                profileImageUrl = imageUrl || "";
+            }
+
             const response = await axiosConfig.post(API_ENDPOINTS.REGISTER, {
                 fullName,
                 email,
                 password,
+                profileImageUrl
             })
             if(response.status === 201){
                 toast.success("Profile Created successfully.");
@@ -80,7 +92,7 @@ const Signup = () => {
 
                     <form onSubmit={handleSubmit} className="space-y-4">
                         <div className="flex justify-center mb-6">
-                            {/* Profile Image Placeholder */}
+                            <ProfilePhotoSelector image={profilePhoto} setImage={setProfilePhoto} />
                         </div>
 
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">

@@ -21,7 +21,7 @@ const excludeEndPoints = [
 axiosConfig.interceptors.request.use(
   (config) => {
     const shouldSkipToken = excludeEndPoints.some((endpoint) => {
-      config.url?.includes(endpoint);
+      return config.url?.includes(endpoint);
     });
 
     if (!shouldSkipToken) {
