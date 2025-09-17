@@ -1,8 +1,13 @@
+import Dashboard from "../components/Dashboard";
+import useUser from "../hooks/useUser";
 
 const Home = () => {
+    useUser();
     return (
         <div>
-            Home
+            <Dashboard activeMenu="Dashboard">
+                This is Home Page
+            </Dashboard>
         </div>
     )
 }
