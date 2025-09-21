@@ -1,64 +1,76 @@
-import { Edit3, Folder, TrendingDown, TrendingUp } from "lucide-react";
+import { Edit, Folder, TrendingDown, TrendingUp } from "lucide-react";
 
 const CategoryList = ({ categories, onEditCategory }) => {
   return (
-    <div className="category-container p-6">
+    <div className="category-container p-4">
       {categories.length === 0 ? (
-        <div className="flex flex-col items-center justify-center py-20 px-6 text-center">
-          <div className="w-28 h-28 rounded-full bg-gradient-to-tr from-gray-100 to-gray-200 flex items-center justify-center mb-6 shadow-inner">
-            <Folder size={52} className="text-gray-400" />
+        <div className="flex flex-col items-center justify-center py-16 px-6 text-center">
+          <div className="w-20 h-20 rounded-full bg-gray-100 flex items-center justify-center mb-4">
+            <Folder size={32} className="text-gray-400" />
           </div>
-          <h3 className="text-2xl font-bold text-gray-700 mb-2">No categories yet</h3>
-          <p className="text-gray-500 max-w-md leading-relaxed">
+          <h3 className="text-xl font-bold text-gray-700 mb-2">No categories yet</h3>
+          <p className="text-gray-500 text-sm max-w-md">
             Get started by creating your first category to organize your finances.
           </p>
         </div>
       ) : (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
           {categories.map((category) => (
             <div
               key={category.id}
-              className="group relative bg-white/80 backdrop-blur-md border border-gray-200/70 p-6 rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col hover:scale-[1.02]">
-              {/* Category type indicator bar */}
-              <div className={`absolute top-0 left-0 w-1 h-full rounded-l-2xl`} />
-
-              {/* Icon and name */}
-              <div className="flex items-center mb-5 pl-3">
-                <div className={`w-14 h-14 flex items-center justify-center rounded-xl shadow-sm}`}>
-                  {category.icon ? (
-                    <img
-                      src={category.icon}
-                      alt={category.name}
-                      className="h-7 w-7 object-contain" />
-                  ) : (
-                    <Folder size={26} />
-                  )}
-                </div>
-                <div className="ml-4 flex-1 min-w-0">
-                  <p className="text-lg font-bold text-gray-900 truncate">
-                    {category.name}
-                  </p>
-                  <div className="flex items-center mt-1 text-sm">
-                    {category.type === "income" ? (
-                      <TrendingUp size={16} className="text-emerald-500 mr-1.5" />
+              className="bg-white rounded-xl shadow-sm border border-gray-200 p-4 hover:shadow-md transition-shadow duration-200 flex flex-col justify-between"
+            >
+              {/* Header with icon and name */}
+              <div className="flex items-center justify-between mb-3">
+                <div className="flex items-center">
+                  <div
+                    className={`w-10 h-10 rounded-lg flex items-center justify-center mr-3 ${
+                      category.type === "income" ? "bg-green-100" : "bg-red-100"
+                    }`}
+                  >
+                    {category.icon ? (
+                      <img
+                        src={category.icon}
+                        alt={category.name}
+                        className="h-5 w-5 object-contain"
+                      />
                     ) : (
-                      <TrendingDown size={16} className="text-rose-500 mr-1.5" />
+                      <Folder
+                        size={18}
+                        className={category.type === "income" ? "text-green-600" : "text-red-600"}
+                      />
                     )}
-                    <span className="font-medium text-gray-500 uppercase tracking-wide">
-                      {category.type}
-                    </span>
+                  </div>
+                  <div>
+                    <p className="text-sm font-semibold text-gray-900">{category.name}</p>
+                    <div className="flex items-center mt-1">
+                      {category.type === "income" ? (
+                        <TrendingUp size={12} className="text-green-500 mr-1" />
+                      ) : (
+                        <TrendingDown size={12} className="text-red-500 mr-1" />
+                      )}
+                      <span
+                        className={`text-xs font-medium uppercase tracking-wide ${
+                          category.type === "income" ? "text-green-600" : "text-red-600"
+                        }`}
+                      >
+                        {category.type}
+                      </span>
+                    </div>
                   </div>
                 </div>
+
+                {/* Edit button */}
+                <div className="flex items-center">
+                  <button
+                    onClick={() => onEditCategory(category)}
+                    className="flex items-center gap-2 px-4 py-2 rounded-full bg-gray-100 text-black text-sm font-medium hover:bg-black text-white shadow-md transition duration-200"
+                  >
+                    <Edit size={16} />
+                    Edit
+                  </button>
+                </div>
               </div>
-
-              {/* Edit button */}
-              <button
-                onClick={() => onEditCategory(category)}
-                className="mt-auto flex items-center justify-center w-full py-2.5 rounded-xl bg-gray-50 text-gray-600 font-medium hover:bg-black hover:text-white transition-colors duration-200 shadow-sm">
-                <Edit3 size={16} className="mr-2" />
-                  Edit Category
-              </button>
-
             </div>
           ))}
         </div>

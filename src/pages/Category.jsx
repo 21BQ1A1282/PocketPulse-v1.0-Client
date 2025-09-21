@@ -123,7 +123,7 @@ const Category = () => {
 
                 {/* Category list section */}
                 <div className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
-                    <div className="px-6 py-5 border-b border-gray-100 bg-gradient-to-r from-gray-50 to-white">
+                    <div className="px-6 py-5">
                         <div className="flex items-center justify-between">
                             <div>
                                 <h2 className="text-xl font-semibold text-gray-800">Categories Sources</h2>
