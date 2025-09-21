@@ -126,7 +126,7 @@ const Category = () => {
                     <div className="px-6 py-5 border-b border-gray-100 bg-gradient-to-r from-gray-50 to-white">
                         <div className="flex items-center justify-between">
                             <div>
-                                <h2 className="text-xl font-semibold text-gray-800">All Categories</h2>
+                                <h2 className="text-xl font-semibold text-gray-800">Categories Sources</h2>
                                 <p className="text-sm text-gray-500 mt-1">
                                     {totalCount} {totalCount === 1 ? 'category' : 'categories'} total
                                 </p>
