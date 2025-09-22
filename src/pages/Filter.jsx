@@ -119,33 +119,39 @@ const Filter = () => {
           </form>
 
         </div>
-        <div className="mt-4 bg-white/90 backdrop-blur-md shadow-lg rounded-2xl p-8 border border-gray-100">
-          <div className="text-left mb-8">
-            <h5 className="text-xl font-semibold text-gray-800">
+        <div className="mt-6 bg-white/95 backdrop-blur-lg shadow-2xl rounded-3xl p-8 border border-gray-100 hover:shadow-3xl transition-shadow duration-300">
+          {/* Header */}
+          <div className="text-left mb-6">
+            <h5 className="text-2xl font-extrabold text-gray-800 tracking-tight">
               Transactions
             </h5>
           </div>
-          {transactions.length === 0 && !loading ? (
-            <p className="text-sm text-gray-500 mt-1">
-              Select the filters above and click on search button to filter the transactions
+
+          {/* Empty or Loading States */}
+          {!loading && transactions.length === 0 && (
+            <p className="text-sm text-gray-500 mt-2">
+              Select the filters above and click the search button to filter transactions
             </p>
-          ) : ("")}
-          {loading ? (
-            <p className="text-sm text-gray-500 mt-1">
-              Loading Transactions
-            </p>
-          ) : ("")}
-          {transactions.map((transaction) => (
-            <TransactionInfoCard
-              key={transaction.id}
-              title={transaction.name}
-              icon={transaction.icon}
-              date={moment(transaction.date).format('Do MMM YYYY')}
-              amount={transaction.amount}
-              type={type}
-              hideDeleteBtn
-            />
-          ))}
+          )}
+          {loading && (
+            <p className="text-sm text-gray-500 mt-2">Loading Transactions...</p>
+          )}
+
+          {/* Transactions List */}
+          <div className="space-y-4 mt-4">
+            {transactions.map((transaction) => (
+              <TransactionInfoCard
+                key={transaction.id}
+                title={transaction.name}
+                icon={transaction.icon}
+                date={moment(transaction.date).format('Do MMM YYYY')}
+                amount={transaction.amount}
+                type={type}
+                hideDeleteBtn
+                className="bg-gray-50 hover:bg-gray-100 transition-colors rounded-xl p-4 shadow-sm"
+              />
+            ))}
+          </div>
         </div>
       </div>
     </Dashboard>
