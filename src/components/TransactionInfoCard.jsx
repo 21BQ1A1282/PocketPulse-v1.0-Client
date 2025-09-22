@@ -5,7 +5,7 @@ import { addThousandSeparator } from "../util/utils";
 const TransactionInfoCard = ({ icon, title, date, amount, type, hideDeleteBtn, onDelete }) => {
   const [showOptions, setShowOptions] = useState(false);
   const isIncome = type === "income";
-  
+
   const amountClasses = isIncome
     ? "text-emerald-700 bg-emerald-50 border-emerald-100"
     : "text-rose-700 bg-rose-50 border-rose-100";
@@ -54,12 +54,12 @@ const TransactionInfoCard = ({ icon, title, date, amount, type, hideDeleteBtn, o
                 className="text-gray-400 hover:text-gray-600 p-1 rounded-full hover:bg-gray-100 transition-colors">
                 <MoreVertical size={18} />
               </button>
-              
+
               {showOptions && (
                 <>
                   {/* Backdrop */}
                   <div className="fixed inset-0 z-10" onClick={() => setShowOptions(false)} />
-            
+
                   {/* Options dropdown */}
                   <div className="absolute right-0 top-full mt-1 z-20 w-40 bg-white rounded-xl shadow-lg border border-gray-200 py-2">
                     <button
