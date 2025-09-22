@@ -1,10 +1,14 @@
 import { Coins, FunnelPlus, LayoutDashboard, List, Wallet } from "lucide-react";
+import demo_img from "./demo_img.png";
+import income_analysis from "./income_analysis.png";
 import login_bg from "./login_bg.jpg";
 import logo_pp from "./logo_pp.png";
 
 export const assets = {
   logo_pp,
   login_bg,
+  demo_img,
+  income_analysis,
 };
 
 export const SIDE_BAR_DATA = [

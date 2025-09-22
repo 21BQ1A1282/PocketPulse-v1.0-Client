@@ -5,7 +5,7 @@ import { assets } from "../assets/assets";
 import { AppContext } from "../context/AppContext";
 import Sidebar from "./Sidebar";
 
-const Menubar = ({activeMenu}) => {
+const Menubar = ({ activeMenu }) => {
   const [openSideMenu, setOpenSideMenu] = useState(false);
   const [showDropdown, setShowDropdown] = useState(false);
   const dropdownRef = useRef(null);
@@ -16,22 +16,22 @@ const Menubar = ({activeMenu}) => {
     localStorage.clear();
     clearUser();
     setShowDropdown(false);
-    navigate("/login");
+    navigate("/");
   };
 
   useEffect(() => {
     const handleClickOutside = (e) => {
-        if(dropdownRef.current && !dropdownRef.current.contains(e.target)){
-            setShowDropdown(false);
-        }
+      if (dropdownRef.current && !dropdownRef.current.contains(e.target)) {
+        setShowDropdown(false);
+      }
     };
 
-    if(showDropdown){
-        document.addEventListener("mousedown",handleClickOutside);
+    if (showDropdown) {
+      document.addEventListener("mousedown", handleClickOutside);
     }
 
     return () => {
-        document.removeEventListener("mousedown",handleClickOutside);
+      document.removeEventListener("mousedown", handleClickOutside);
     }
   }, [showDropdown]);
 
@@ -107,7 +107,7 @@ const Menubar = ({activeMenu}) => {
       {/* Menu bar */}
       {openSideMenu && (
         <div className="fixed left-0 right-0 bg-white border-b border-gray-200 lg:hidden z-20 top-[73px]">
-            <Sidebar activeMenu={activeMenu} />
+          <Sidebar activeMenu={activeMenu} />
         </div>
       )}
     </div>

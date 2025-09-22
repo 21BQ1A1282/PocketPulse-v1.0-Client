@@ -5,6 +5,7 @@ import Expense from "./pages/Expense";
 import Filter from "./pages/Filter";
 import Home from "./pages/Home";
 import Income from "./pages/Income";
+import LandingPage from "./pages/LandingPage";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 
@@ -15,6 +16,7 @@ const App = () => {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Root />} />
+          <Route path="/home" element={<LandingPage />} />
           <Route path="/dashboard" element={<Home />} />
           <Route path="/income" element={<Income />} />
           <Route path="/expense" element={<Expense />} />
@@ -33,7 +35,7 @@ const Root = () => {
   return isAuthenticated ? (
     <Navigate to="/dashboard" />
   ) : (
-    <Navigate to="/login" />
+    <Navigate to="/home" />
   );
 }
 
